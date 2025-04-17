@@ -4,25 +4,18 @@ import { useState } from 'react';
 
 
 function App() {
-  const [count, setCounter] = useState(5);
+  const [color, setColor] = useState('olive');
 
-  const incValue = () => {
-    setCounter(count+1);
-   
-  }
-
-  const descValue = () => {
-    setCounter(count-1);
-  }
-
+ 
   return (
-    <div className="App">
-  <h1>Counter Program increament/descrement</h1>
-  <h1>Value is : {count}</h1>
-  <button  onClick={incValue}>Add Value</button>
+ <>
+  <div className='bgClass' style={{backgroundColor:color}}></div>
+  <div className='btnClass'>
+  <button className="btn" style={{backgroundColor:'yellow'}} onClick= {() => setColor('yellow')}>Yellow btn</button>
   <br />
-  <button onClick={descValue}>Remove value</button>
-    </div>
+  <button className="btn" style={{backgroundColor:'red'}}  onClick= {() => setColor('red')}>Red btn</button>
+  </div>
+    </>
   );
 }
 
