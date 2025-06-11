@@ -1,7 +1,5 @@
-Javascript senerio based question and answers
 
 1.
-
 console.log(1)
 const promise = new Promise((resolve) => {
   console.log(2)
