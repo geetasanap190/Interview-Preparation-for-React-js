@@ -56,3 +56,66 @@ In the .then(...) block:
 The first function ((value) => { console.log(value) }) is called with value = 1.
 The second function ((error) => { console.log('error') }) is not called because there's no error.
 
+3. Promise.resolve(1)
+  .then(() => 2)                    // Returns 2
+  .then(3)                          // Ignores 3, returns previous value (2)
+  .then((value) => value * 3)       // 2 * 3 = 6
+  .then(Promise.resolve(4))        // .then(4), not a function, ignored
+  .then(console.log)               // Logs 6
+Detailed Explanation:
+Promise.resolve(1)
+→ Resolves with 1.
+
+.then(() => 2)
+→ Ignores the previous 1, returns 2.
+
+.then(3)
+→ Wrong usage: then() expects a function, but 3 is not a function. So this .then is ignored, and the value 2 just passes through.
+
+.then((value) => value * 3)
+→ Takes 2, returns 6.
+
+.then(Promise.resolve(4))
+→ Wrong usage again: passing a Promise, not a function. So it's ignored. The previous value 6 passes through.
+
+.then(console.log)
+→ Logs 6.
+
+
+3.// This is a JavaScript Quiz from BFE.dev
+
+Promise.resolve(1)
+.then((val) => {
+  console.log(val)
+  return val + 1
+}).then((val) => {
+  console.log(val)
+}).then((val) => {
+  console.log(val)
+  return Promise.resolve(3)
+    .then((val) => {
+      console.log(val)
+    })
+}).then((val) => {
+  console.log(val)
+  return Promise.reject(4)
+}).catch((val) => {
+  console.log(val)
+}).finally((val) => {
+  console.log(val)
+  return 10
+}).then((val) => {
+  console.log(val)
+})
+
+
+5.   
+let a = 1       // a = 1
+const b = ++a   // Pre-increment: a becomes 2, then b = 2
+const c = a++   // Post-increment: c = 2, then a becomes 3
+
+console.log(a)  // 3
+console.log(b)  // 2
+console.log(c)  // 2
+
+
