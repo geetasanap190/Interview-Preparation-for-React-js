@@ -35,3 +35,24 @@ setTimeout(() => {
 6
 9
 8
+
+
+2. new Promise((resolve, reject) => {
+  resolve(1)
+  resolve(2)
+  reject('error')
+}).then((value) => {
+  console.log(value)
+}, (error) => {
+  console.log('error')
+})
+
+output: 1 
+A Promise can only be settled once (either resolved or rejected).
+In this code:
+resolve(1) is called first, so the Promise gets resolved with the value 1.
+resolve(2) and reject('error') are ignored because the Promise is already settled.
+In the .then(...) block:
+The first function ((value) => { console.log(value) }) is called with value = 1.
+The second function ((error) => { console.log('error') }) is not called because there's no error.
+
